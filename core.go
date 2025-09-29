@@ -3,6 +3,8 @@ package pigment
 import (
 	"fmt"
 	"strings"
+
+	"github.com/highseas-software/pigment/ansi"
 )
 
 type stylePair struct {
@@ -91,7 +93,7 @@ func (c *composer) String(strs ...string) string {
 }
 
 func (c *composer) WithRed() style {
-	return createComposer(c, codeToSeq(31), codeToSeq(39))
+	return createComposer(c, codeToSeq(ansi.Red.Code), codeToSeq(ansi.Red.Reset))
 }
 
 func (c *composer) Red(str ...string) string {
@@ -107,7 +109,7 @@ func Red(str ...string) string {
 }
 
 func (c *composer) WithBold() style {
-	return createComposer(c, codeToSeq(1), codeToSeq(22))
+	return createComposer(c, codeToSeq(ansi.Bold.Code), codeToSeq(ansi.Bold.Reset))
 }
 
 func (c *composer) Bold(str ...string) string {
