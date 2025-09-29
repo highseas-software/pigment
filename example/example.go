@@ -23,4 +23,7 @@ func main() {
 
 	// Chaining
 	fmt.Println(pigment.WithBold().Red("this is red and bold"))
+
+	// 256 ANSI Colors
+	pigment.PrintColors()
 }
