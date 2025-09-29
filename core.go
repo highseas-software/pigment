@@ -1,6 +1,9 @@
 package pigment
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type stylePair struct {
 	code  string
@@ -28,6 +31,10 @@ type style interface {
 var _ style = (*composer)(nil)
 
 var defaultComposer = &composer{node: nil}
+
+func codeToSeq(code uint8) string {
+	return fmt.Sprintf("\x1b[%dm", code)
+}
 
 func createComposer(parentComposer *composer, code string, reset string) *composer {
 	var parent *styleNode
@@ -82,7 +89,7 @@ func (c *composer) String(strs ...string) string {
 }
 
 func (c *composer) WithRed() style {
-	return createComposer(c, "\x1b[31m", "\x1b[39m")
+	return createComposer(c, codeToSeq(31), codeToSeq(39))
 }
 
 func (c *composer) Red(str ...string) string {
@@ -98,7 +105,7 @@ func Red(str ...string) string {
 }
 
 func (c *composer) WithBold() style {
-	return createComposer(c, "\x1b[1m", "\x1b[22m")
+	return createComposer(c, codeToSeq(1), codeToSeq(22))
 }
 
 func (c *composer) Bold(str ...string) string {
