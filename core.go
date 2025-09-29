@@ -26,6 +26,8 @@ type style interface {
 	Red(...string) string
 	WithBold() style
 	Bold(...string) string
+	WithFG(uint8) style
+	WithBG(uint8) style
 }
 
 var _ style = (*composer)(nil)
