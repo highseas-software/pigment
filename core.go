@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/highseas-software/pigment/ansi"
+	"github.com/scallywaag/pigment/ansi"
 )
 
 type stylePair struct {

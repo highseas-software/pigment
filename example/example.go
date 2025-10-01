@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/highseas-software/pigment"
+	"github.com/scallywaag/pigment"
 )
 
 func main() {

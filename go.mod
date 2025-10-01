@@ -1,3 +1,3 @@
-module github.com/highseas-software/pigment
+module github.com/scallywaag/pigment
 
 go 1.25.1
