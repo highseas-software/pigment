@@ -4,8 +4,9 @@ import "fmt"
 
 func PrintColors() {
 	for i := range 256 {
-		fmt.Printf("\x1b[48;5;%dm  \x1b[0m", i)
-		fmt.Printf("\x1b[38;5;%dm%03d\x1b[0m ", i, i)
+		bg := WithBG(uint8(i)).String("  ")
+		fg := WithFG(uint8(i)).Sprintf("%03d", i)
+		fmt.Printf("%s %s ", bg, fg)
 
 		if (i % 6) == 3 {
 			fmt.Println()
