@@ -20,6 +20,8 @@ type styleNode struct {
 
 type composer struct {
 	node *styleNode
+	red  *composer
+	bold *composer
 }
 
 type style interface {
@@ -38,6 +40,13 @@ var defaultComposer = &composer{node: nil}
 
 func codeToSeq(code uint8) string {
 	return fmt.Sprintf("\x1b[%dm", code)
+}
+
+func createStylePair(code, reset uint8) stylePair {
+	return stylePair{
+		code:  codeToSeq(code),
+		reset: codeToSeq(reset),
+	}
 }
 
 func createComposer(parentComposer *composer, code string, reset string) *composer {
@@ -93,7 +102,11 @@ func (c *composer) String(strs ...string) string {
 }
 
 func (c *composer) WithRed() style {
-	return createComposer(c, codeToSeq(ansi.Red.Code), codeToSeq(ansi.Red.Reset))
+	if c.red == nil {
+		sp := createStylePair(ansi.Red.Code, ansi.Red.Reset)
+		c.red = createComposer(c, sp.code, sp.reset)
+	}
+	return c.red
 }
 
 func (c *composer) Red(str ...string) string {
@@ -109,7 +122,11 @@ func Red(str ...string) string {
 }
 
 func (c *composer) WithBold() style {
-	return createComposer(c, codeToSeq(ansi.Bold.Code), codeToSeq(ansi.Bold.Reset))
+	if c.bold == nil {
+		sp := createStylePair(ansi.Bold.Code, ansi.Bold.Reset)
+		c.bold = createComposer(c, sp.code, sp.reset)
+	}
+	return c.bold
 }
 
 func (c *composer) Bold(str ...string) string {
