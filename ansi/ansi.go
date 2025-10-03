@@ -64,3 +64,58 @@ var (
 	BgBrightCyan    = ansiPair{106, 49}
 	BgBrightWhite   = ansiPair{107, 49}
 )
+
+var Styles = []struct {
+	Name string
+	Pair ansiPair
+}{
+	// Modifiers
+	{"Reset", Reset},
+	{"Bold", Bold},
+	{"Dim", Dim},
+	{"Italic", Italic},
+	{"Underline", Underline},
+	{"Inverse", Inverse},
+	{"Hidden", Hidden},
+	{"Strikethrough", Strikethrough},
+
+	// Colors
+	{"Black", Black},
+	{"Red", Red},
+	{"Green", Green},
+	{"Yellow", Yellow},
+	{"Blue", Blue},
+	{"Magenta", Magenta},
+	{"Cyan", Cyan},
+	{"White", White},
+
+	// Backgrounds
+	{"BrightBlack", BrightBlack},
+	{"BrightRed", BrightRed},
+	{"BrightGreen", BrightGreen},
+	{"BrightYellow", BrightYellow},
+	{"BrightBlue", BrightBlue},
+	{"BrightMagenta", BrightMagenta},
+	{"BrightCyan", BrightCyan},
+	{"BrightWhite", BrightWhite},
+
+	// Bright Colors
+	{"BgBlack", BgBlack},
+	{"BgRed", BgRed},
+	{"BgGreen", BgGreen},
+	{"BgYellow", BgYellow},
+	{"BgBlue", BgBlue},
+	{"BgMagenta", BgMagenta},
+	{"BgCyan", BgCyan},
+	{"BgWhite", BgWhite},
+
+	// Bright Backgrounds
+	{"BgBrightBlack", BgBrightBlack},
+	{"BgBrightRed", BgBrightRed},
+	{"BgBrightGreen", BgBrightGreen},
+	{"BgBrightYellow", BgBrightYellow},
+	{"BgBrightBlue", BgBrightBlue},
+	{"BgBrightMagenta", BgBrightMagenta},
+	{"BgBrightCyan", BgBrightCyan},
+	{"BgBrightWhite", BgBrightWhite},
+}
