@@ -20,6 +20,8 @@ type style interface {
 	Print(...any)
 	Printf(string, ...any)
 	Println(...any)
+	Compose(...style) style
+	WithCustom(string) style
 	WithFG(uint8) style
 	WithBG(uint8) style
 {{- range . }}
