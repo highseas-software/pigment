@@ -38,4 +38,16 @@ func main() {
 	// More colors
 	pigment.WithBlack().WithItalic().WithBgCyan().WithBold().Println("so many styles")
 	pigment.WithBrightBlue().WithItalic().WithStrikethrough().Println("and so many more")
+
+	// Custom color registry
+	var (
+		BoldRed    = "BoldRed"
+		ItalicBlue = "ItalicBlue"
+	)
+
+	pigment.Register(BoldRed, pigment.WithRed(), pigment.WithBold())
+	pigment.Register(ItalicBlue, pigment.WithBlue().WithItalic())
+
+	pigment.WithCustom(BoldRed).Println("bold red text")
+	pigment.WithCustom(ItalicBlue).Println("italic blue text")
 }
