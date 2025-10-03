@@ -34,4 +34,8 @@ func main() {
 	// Formatting funcs
 	pigment.WithRed().Println("red string")
 	pigment.WithBold().Printf("bold string with %s\n", "formatting")
+
+	// More colors
+	pigment.WithBlack().WithItalic().WithBgCyan().WithBold().Println("so many styles")
+	pigment.WithBrightBlue().WithItalic().WithStrikethrough().Println("and so many more")
 }
