@@ -14,7 +14,8 @@ func PrintColors() {
 
 func (c *composer) WithFG(colorID uint8) style {
 	code := fmt.Sprintf("\x1b[38;5;%dm", colorID)
-	return createComposer(c, code, "\x1b[39m")
+	reset := fmt.Sprintf("\x1b[%dm", 39)
+	return createComposer(c, code, reset)
 }
 
 func WithFG(colorID uint8) style {
@@ -23,7 +24,8 @@ func WithFG(colorID uint8) style {
 
 func (c *composer) WithBG(colorID uint8) style {
 	code := fmt.Sprintf("\x1b[48;5;%dm", colorID)
-	return createComposer(c, code, "\x1b[49m")
+	reset := fmt.Sprintf("\x1b[%dm", 39)
+	return createComposer(c, code, reset)
 }
 
 func WithBG(colorID uint8) style {
