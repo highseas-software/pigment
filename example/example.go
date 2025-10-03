@@ -30,4 +30,8 @@ func main() {
 	// ANSI 256 FG and BG
 	fmt.Println(pigment.WithFG(111).String("this is an ansi foreground"))
 	fmt.Println(pigment.WithBG(219).String("this is an ansi background"))
+
+	// Formatting funcs
+	pigment.WithRed().Println("red string")
+	pigment.WithBold().Printf("bold string with %s\n", "formatting")
 }

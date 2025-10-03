@@ -2,7 +2,6 @@ package pigment
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/scallywaag/pigment/ansi"
 )
@@ -26,6 +25,12 @@ type composer struct {
 
 type style interface {
 	String(...string) string
+	Sprint(...any) string
+	Sprintf(string, ...any) string
+	Sprintln(...any) string
+	Print(...any)
+	Printf(string, ...any)
+	Println(...any)
 	WithRed() style
 	Red(...string) string
 	WithBold() style
@@ -69,36 +74,6 @@ func createComposer(parentComposer *composer, code string, reset string) *compos
 			parent: parent,
 		},
 	}
-}
-
-func (c *composer) String(strs ...string) string {
-	if len(strs) == 0 {
-		return ""
-	}
-
-	var str string
-	if len(strs) == 1 {
-		str = strs[0]
-	} else {
-		str = strings.Join(strs, " ")
-	}
-
-	style := c.node
-	if style == nil {
-		return str
-	}
-
-	codeAcc := style.acc.code
-	resetAcc := style.acc.reset
-
-	if strings.Contains(str, "\x1b") {
-		for style != nil {
-			str = strings.ReplaceAll(str, style.style.reset, style.style.code)
-			style = style.parent
-		}
-	}
-
-	return codeAcc + str + resetAcc
 }
 
 func (c *composer) WithRed() style {
